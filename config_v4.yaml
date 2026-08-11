@@ -1,0 +1,113 @@
+defaults:
+  api:
+    base_url: https://api.hyperliquid.xyz
+    concurrent_max_workers: 4
+    concurrent_timeout: 15
+    dex_query_max_workers: 5
+    dex_query_timeout: 20
+    max_retries: 2
+    retry_interval: 5
+    timeout: 15
+  debounce:
+    window_ms: 500
+  deduplication:
+    window_seconds: 300
+  flip:
+    backoff_base: 3
+    base_interval: 5
+    max_interval: 300
+    max_retries: 30
+    notify_interval: 300
+  logging:
+    backup_count: 5
+    json_format: false
+    log_mode: both
+    max_bytes: 10485760
+  polling:
+    emergency_stop_check_interval: 5
+    reconciliation_interval: 30
+    status_interval: 600
+    tpsl_sync_interval: 30
+    tpsl_sync_time_seconds: 900
+  safety:
+    change_ratio_circuit_breaker: 0.5
+    double_confirm_enabled: true
+    enabled: true
+    fills_verify_enabled: true
+    fills_verify_window_seconds: 180
+    require_all_dex_success: true
+  strategy:
+    confirm_wait_seconds: 3
+    deviation_tolerance: 0.25
+    ioc_price_offset: 0.005
+    position_min_value: 100
+    price_change_tolerance: 0.001
+    tpsl_limit_offset: 0.005
+    tpsl_size_tolerance: 0.05
+  sz_decimals:
+    APE: 1
+    ARB: 1
+    ATOM: 2
+    AVAX: 2
+    BNB: 3
+    BTC: 5
+    CRV: 1
+    DOGE: 0
+    DYDX: 1
+    ETH: 4
+    HYPE: 2
+    INJ: 1
+    LDO: 1
+    LINK: 1
+    LTC: 2
+    MATIC: 1
+    OP: 1
+    RENDER: 1
+    SOL: 2
+    STX: 1
+    SUI: 1
+    kPEPE: 0
+  websocket:
+    reconnect:
+      initial_backoff: 1
+      max_backoff: 60
+      pong_timeout: 30
+    subscription_type: clearinghouseState
+    url: wss://api.hyperliquid.xyz/ws
+instances:
+  highfreq:
+    alert_bot_name: HL CopyTrade (HighFreq)
+    api_wallet_expiry: '2027-01-01'  # <- your API wallet expiry
+    api_wallet_name: trading-bot-hf
+    console_level: WARNING
+    display_name: 高频跟单
+    enabled: true
+    file_prefix: highfreq
+    fund_ratio: 0.9
+    health_port: 8998
+    log_level: INFO
+    max_leverage: 40
+    poll_interval: 60
+    wallet_instance: highfreq
+    ws_enabled: true
+  lowfreq:
+    alert_bot_name: HL CopyTrade
+    api_wallet_expiry: '2027-01-01'  # <- your API wallet expiry
+    api_wallet_name: trading-bot
+    console_level: WARNING
+    display_name: 低频跟单
+    enabled: true
+    file_prefix: lowfreq
+    fund_ratio: 0.9
+    health_port: 8997
+    log_level: INFO
+    max_leverage: 40
+    poll_interval: 60
+    wallet_instance: lowfreq
+    ws_enabled: true
+orchestrator:
+  auto_restart: true
+  health_check_interval: 10
+  health_port: 9000
+  max_restarts: 100
+  restart_delay: 30
