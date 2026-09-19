@@ -1,0 +1,26 @@
+# Secrets
+.env
+.env.*
+!.env.example
+*.key
+*.enc
+*.pem
+
+# Runtime
+venv/
+__pycache__/
+*.py[cod]
+*.pid
+*.db
+*.sqlite
+*.log
+
+# Data & internal
+data/
+logs/
+.orchestrator/
+secrets_backup/
+
+# OS
+.DS_Store
+Thumbs.db

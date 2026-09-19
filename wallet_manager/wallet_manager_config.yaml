@@ -1,0 +1,17 @@
+defaults:
+  api_url: https://api.hyperliquid.xyz
+  grace_days_after_expiry: 7
+
+instances:
+  highfreq:
+    display_name: "HighFreq CopyTrade"
+    env_file: .orchestrator/highfreq/.env.highfreq
+    user_main_addr: "0xYOUR_HIGHFREQ_ADDR"   # <- your highfreq main wallet address
+    wallet_name: trading-bot-hf
+    orchestrator_instance: highfreq
+  lowfreq:
+    display_name: "LowFreq CopyTrade"
+    env_file: .orchestrator/lowfreq/.env.lowfreq
+    user_main_addr: "0xYOUR_LOWFREQ_ADDR"    # <- your lowfreq main wallet address
+    wallet_name: trading-bot
+    orchestrator_instance: lowfreq
